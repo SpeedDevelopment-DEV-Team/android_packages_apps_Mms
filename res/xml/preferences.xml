@@ -108,7 +108,6 @@
                         android:summary="@string/pref_summary_notification_show_avatar"
                         android:title="@string/pref_title_notification_show_avatar" />
   </PreferenceCategory>
-
   <PreferenceCategory android:title="@string/prefs_templates_settings" >
         <Preference
             android:key="pref_key_templates_manage"
@@ -129,4 +128,10 @@
             android:title="@string/pref_title_template_gestures_sensitivity" />
     </PreferenceCategory>
 
+  <PreferenceCategory android:title="@string/pref_extra_settings">
+    <CheckBoxPreference android:key="pref_key_mms_full_timestamp"
+                        android:title="@string/pref_title_mms_full_timestamp"
+                        android:summary="@string/pref_summary_mms_full_timestamp"
+                        android:defaultValue="false" />
+  </PreferenceCategory>
 </PreferenceScreen>
