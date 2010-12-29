@@ -72,6 +72,7 @@ public class MessagingPreferenceActivity extends PreferenceActivity {
     public static final String GESTURE_SENSITIVITY = "pref_key_templates_gestures_sensitivity";
     public static final String GESTURE_SENSITIVITY_VALUE = "pref_key_templates_gestures_sensitivity_value";
     public static final String FULL_TIMESTAMP           = "pref_key_mms_full_timestamp";
+    public static final String SENT_TIMESTAMP           = "pref_key_mms_use_sent_timestamp";
 
     // Menu entries
     private static final int MENU_RESTORE_DEFAULTS    = 1;
