@@ -33,6 +33,7 @@ import android.provider.Telephony.Sms;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+import android.telephony.SmsMessage;
 import java.util.ArrayList;
 
 public class SmsMessageSender implements MessageSender {
@@ -112,51 +113,47 @@ public class SmsMessageSender implements MessageSender {
         // To split or not to split, that is THE question!
         if (splitMessage && (nSmsPages >  1))
         {
-            // Split the message by encoding
-            ArrayList<String> MessageBody = SmsMessage.fragmentText(mMessageText);
+                // Split the message by encoding
+                ArrayList<String> MessageBody = SmsMessage.fragmentText(mMessageText);
 
-            // Start send loop for split messages
-            for(int page = 0; page < nSmsPages; page++)
+                // Start send loop for split messages
+                for(int page = 0; page < nSmsPages; page++)
                 {
-                    // Adds counter at end of message
-                    if(splitCounter) {
-                        String counterText = MessageBody.get(page) +  "(" + (page + 1) + "/" + nSmsPages + ")";
-                        MessageBody.set(page, counterText);
-                    }
-
-                    for (int i = 0; i < mNumberOfDests; i++) {
-                    try {
-                            Sms.addMessageToUri(mContext.getContentResolver(),
-                            Uri.parse("content://sms/queued"), mDests[i],
-                            MessageBody.get(page), null, mTimestamp,
-                            true /* read */,
-                            requestDeliveryReport,
-                            mThreadId);
-                        } catch (SQLiteException e) {
-                            SqliteWrapper.checkSQLiteException(mContext, e);
+                        // Adds counter at end of message
+                        if(splitCounter) {
+                                String counterText = MessageBody.get(page) +  "(" + (page + 1) + "/" + nSmsPages + ")";
+                                MessageBody.set(page, counterText);
                         }
-                    }
-                }
+
+                        for (int i = 0; i < mNumberOfDests; i++) {
+                        try {
+                                Sms.addMessageToUri(mContext.getContentResolver(), 
+                                Uri.parse("content://sms/queued"), mDests[i],
+                                MessageBody.get(page), null, mTimestamp,
+                                true /* read */,
+                                requestDeliveryReport,
+                                mThreadId);
+                        } catch (SQLiteException e) {
+                                SqliteWrapper.checkSQLiteException(mContext, e);
+                        }
+                        }
+                } 
         } else { // Send without split or counter
-        for (int i = 0; i < mNumberOfDests; i++) {
-            try {
-                if (LogTag.DEBUG_SEND) {
-                    Log.v(TAG, "queueMessage mDests[i]: " + mDests[i] + " mThreadId: " + mThreadId);
-                }
-                Sms.addMessageToUri(mContext.getContentResolver(),
-                    Uri.parse("content://sms/queued"), mDests[i],
-                    mMessageText, null, mTimestamp,
-                    true /* read */,
-                    requestDeliveryReport,
-                    mThreadId);
+
+                for (int i = 0; i < mNumberOfDests; i++) {
+                try {
+                        Sms.addMessageToUri(mContext.getContentResolver(), 
+                        Uri.parse("content://sms/queued"), mDests[i],
+                        mMessageText, null, mTimestamp,
+                        true /* read */,
+                        requestDeliveryReport,
+                        mThreadId);
                 } catch (SQLiteException e) {
-                    if (LogTag.DEBUG_SEND) {
-                        Log.e(TAG, "queueMessage SQLiteException", e);
-                    }
-                    SqliteWrapper.checkSQLiteException(mContext, e);
+                        SqliteWrapper.checkSQLiteException(mContext, e);
                 }
-            }
+                }
         }
+
         // Notify the SmsReceiverService to send the message out
         mContext.sendBroadcast(new Intent(SmsReceiverService.ACTION_SEND_MESSAGE,
                 null,
