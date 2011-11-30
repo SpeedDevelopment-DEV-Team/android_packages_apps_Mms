@@ -820,4 +820,7 @@
     <string name="pref_title_mms_notification_vibrate_custom">Custom vibrate pattern</string>
     <string name="pref_text_mms_notification_vibrate_custom">Format off/on in milliseconds: off, on, off, on, ...</string>
 
+   <!-- SMS Sent Time -->
+       <string name="pref_summary_sms_sent_time_summary">Check the box to report the time that the sms was sent, if unchecked the time will be when it was recieved</string>
+       <string name="pref_title_sms_sent_time_title">Sent/Recieved Time</string>
 </resources>
