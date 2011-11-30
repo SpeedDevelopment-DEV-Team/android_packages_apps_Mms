@@ -20,9 +20,13 @@ package com.android.mms.transaction;
 import static android.content.Intent.ACTION_BOOT_COMPLETED;
 import static android.provider.Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
 
+import java.util.TimeZone;
+import android.preference.PreferenceManager;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import com.android.mms.ui.MessagingPreferenceActivity;
 import com.android.mms.data.Contact;
 import com.android.mms.ui.ClassZeroActivity;
 import com.android.mms.util.Recycler;
@@ -595,8 +599,14 @@ public class SmsReceiverService extends Service {
             // receive time in this case, use the timestamp of when the message was sent.
             now = sms.getTimestampMillis();
         }
+	Long time = new Long(System.currentTimeMillis());
 
-        values.put(Inbox.DATE, new Long(now));
+	if (PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(MessagingPreferenceActivity.SENT_TIMESTAMP, false)) {
+	//GMT offset
+		time = sms.getTimestampMillis();
+		time -= TimeZone.getDefault().getOffset(time);
+	}
+	values.put(Inbox.DATE, time);
         values.put(Inbox.DATE_SENT, Long.valueOf(sms.getTimestampMillis()));
         values.put(Inbox.PROTOCOL, sms.getProtocolIdentifier());
         values.put(Inbox.READ, 0);
