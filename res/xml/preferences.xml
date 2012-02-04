@@ -101,6 +101,12 @@
                         android:entries="@array/prefEntries_vibrateWhen"
                         android:entryValues="@array/prefValues_vibrateWhen"
                         android:dialogTitle="@string/prefDialogTitle_vibrateWhen" />
+    <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
+                        android:dependency="pref_key_enable_notifications"
+                        android:defaultValue="true"
+                        android:key="pref_key_avatar"
+                        android:summary="@string/pref_summary_notification_show_avatar"
+                        android:title="@string/pref_title_notification_show_avatar" />
   </PreferenceCategory>
 
   <PreferenceCategory android:title="@string/prefs_templates_settings" >
