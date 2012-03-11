@@ -101,12 +101,20 @@
                         android:entries="@array/prefEntries_vibrateWhen"
                         android:entryValues="@array/prefValues_vibrateWhen"
                         android:dialogTitle="@string/prefDialogTitle_vibrateWhen" />
-    <CheckBoxPreference android:layout="?android:attr/preferenceLayoutChild"
+    <com.android.mms.preferences.CustomVibrateListPreference
+                        android:key="pref_key_mms_notification_vibrate_pattern"
+                        android:dependency="pref_key_vibrateWhen"
+                        android:defaultValue=""
+                        android:title="@string/pref_title_mms_notification_vibrate_pattern"
+                        android:summary="@string/pref_summary_mms_notification_vibrate_pattern"
+                        android:entries="@array/pref_mms_notification_vibrate_pattern_entries"
+                        android:entryValues="@array/pref_mms_notification_vibrate_pattern_values"
+                        android:dialogTitle="@string/pref_title_mms_notification_vibrate_pattern" />
+    <CheckBoxPreference android:key="pref_key_mms_notification_vibrate_call"
                         android:dependency="pref_key_enable_notifications"
                         android:defaultValue="true"
-                        android:key="pref_key_avatar"
-                        android:summary="@string/pref_summary_notification_show_avatar"
-                        android:title="@string/pref_title_notification_show_avatar" />
+                        android:title="@string/pref_title_mms_notification_vibrate_call"
+                        android:summary="@string/pref_summary_mms_notification_vibrate_call" />
   </PreferenceCategory>
   <PreferenceCategory android:title="@string/prefs_templates_settings" >
         <Preference
