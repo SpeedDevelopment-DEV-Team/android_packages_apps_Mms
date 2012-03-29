@@ -396,6 +396,5 @@ public class MessagingPreferenceActivity extends PreferenceActivity
             }
         }
         mVibrateWhenPref.setSummary(null);
->>>>>>> .merge_file_oZEhOU
     }
 }
