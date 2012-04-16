@@ -358,15 +358,6 @@
     <!-- Settings item for setting the number of message to save for each conversation -->
     <string name="pref_messages_to_save">Set number of messages to save</string>
 
-    <!-- Settings item for SMS Split 160 characters setting -->
-    <string name="pref_title_sms_split_160">SMS split</string>
-    <!-- Settings item description for boolean SMS Split 160 characters setting -->
-    <string name="pref_summary_sms_split_160">Split messages every 160 characters</string>
-    <!-- Settings item for boolean option for SMS Split Counter -->
-    <string name="pref_title_sms_split_counter">Split counter</string>
-    <!-- Settings item description for boolean SMS Split 160 characters setting -->
-    <string name="pref_summary_sms_split_counter">Adds counter to message ex. (1/2)</string>
-
     <!-- The vibrate notification modes -->
     <string-array name="prefEntries_vibrateWhen">
         <!-- Always -->
@@ -801,12 +792,15 @@
     <!-- Strip unicode -->
     <string name="pref_title_strip_unicode">Strip unicode</string>
     <string name="pref_summary_strip_unicode">Substitute common characters that are not supported in 160 character SMS messages</string>
+
     <!-- Enable emojis -->
     <string name="pref_title_enable_emojis">Enable emojis</string>
     <string name="pref_summary_enable_emojis">Enable support for softbank unicode emojis, a set of 471 nice emoticons</string>
+
     <!-- Full timestamps -->
     <string name="pref_title_mms_full_timestamp">Full timestamps</string>
     <string name="pref_summary_mms_full_timestamp">Display both date and time in timestamps</string>
+
     <!-- Which timestamps -->
     <string name="pref_title_mms_use_sent_timestamp">Original timestamps</string>
     <string name="pref_summary_mms_use_sent_timestamp">Display sent date instead of received date in timestamps</string>
@@ -821,6 +815,6 @@
     <string name="pref_text_mms_notification_vibrate_custom">Format off/on in milliseconds: off, on, off, on, ...</string>
 
    <!-- SMS Sent Time -->
-       <string name="pref_summary_sms_sent_time_summary">Check the box to report the time that the sms was sent, if unchecked the time will be when it was recieved</string>
-       <string name="pref_title_sms_sent_time_title">Sent/Recieved Time</string>
+   <string name="pref_summary_sms_sent_time_summary">Check the box to report the time that the sms was sent, if unchecked the time will be when it was recieved</string>
+   <string name="pref_title_sms_sent_time_title">Sent/Recieved Time</string>
 </resources>
