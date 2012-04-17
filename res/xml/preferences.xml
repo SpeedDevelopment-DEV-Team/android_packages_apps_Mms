@@ -55,10 +55,6 @@
                       android:summary="@string/pref_summary_sms_split_counter"
                       android:dependency="pref_key_sms_split_160"
                       android:title="@string/pref_title_sms_split_counter" />
-    <CheckBoxPreference android:defaultValue="true"
-                      android:key="pref_key_sms_sent_time"
-                      android:summary="@string/pref_summary_sms_sent_time_summary"
-                      android:title="@string/pref_title_sms_sent_time_title" />
     <Preference android:key="pref_key_manage_sim_messages"
                       android:summary="@string/pref_summary_manage_sim_messages"
                       android:title="@string/pref_title_manage_sim_messages" />
