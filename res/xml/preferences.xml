@@ -146,6 +146,11 @@
                         android:summary="@string/pref_summary_enable_emojis"
                         android:dependency="pref_key_strip_unicode"
                         android:defaultValue="false" />
+    <CheckBoxPreference android:key="pref_key_emojis_quick"
+                        android:title="@string/pref_title_pref_key_emojis_quick"
+                        android:summary="@string/pref_summary_pref_key_emojis_quick"
+                        android:dependency="pref_key_enable_emojis"
+                        android:defaultValue="false" />
     <CheckBoxPreference android:key="pref_key_mms_full_timestamp"
                         android:title="@string/pref_title_mms_full_timestamp"
                         android:summary="@string/pref_summary_mms_full_timestamp"
