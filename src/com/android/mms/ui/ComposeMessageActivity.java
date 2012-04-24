@@ -3274,6 +3274,8 @@ public class ComposeMessageActivity extends Activity
         mBottomPanel.setVisibility(View.VISIBLE);
 
         CharSequence text = mWorkingMessage.getText();
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences((Context) ComposeMessageActivity.this);
 
         // TextView.setTextKeepState() doesn't like null input.
         if (text != null) {
