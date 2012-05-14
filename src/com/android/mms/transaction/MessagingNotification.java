@@ -533,6 +533,42 @@ public class MessagingNotification {
                     | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
             clickIntent.setType("vnd.android-dir/mms-sms");
+        } else if (!MessagingPreferenceActivity.getHideSenderNameEnabled(context))
+        {
+            // If we're in here, we only have one unique thread so we should show
+            // the picture of the sender if it exists and if the user has NOT
+            // hidden the sender's name in Mms preferences.
+            Drawable avatarDraw = Contact.get(lastSender, true).getAvatar(context, null);
+
+            try {
+                if (avatarDraw != null) {
+                    // Create the large notification icon
+                    Bitmap avatarBit = ((BitmapDrawable)avatarDraw).getBitmap();
+                    int iconSize = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
+
+                    // Resize it if it's a weird size
+                    int imageWidth = avatarBit.getWidth();
+                    int imageHeight = avatarBit.getHeight();
+                    int iconWidth = iconSize;
+                    int iconHeight = iconSize;
+                    if (imageWidth < imageHeight) {
+                       iconWidth = (int) (((float) iconHeight / imageHeight) * imageWidth);
+                    } else {
+                       iconHeight = (int) (((float) iconWidth / imageWidth) * imageHeight);
+                    }
+
+                    // Resize bitmap to fit the desired size
+                    Bitmap resizedAvatar = Bitmap.createScaledBitmap(avatarBit, iconWidth, iconHeight, true);
+
+                    Bitmap croppedAvatar = Bitmap.createBitmap(resizedAvatar, (iconSize - iconWidth) / 2,
+                       (iconSize - iconHeight) / 2, iconSize, iconSize);
+
+                    notificationbuilder.setLargeIcon(croppedAvatar);
+                   }
+            } catch (Exception e) {
+                    // Something happened, but we'll just use the original icon
+                    Log.v(TAG, "Failed to set bitmap for contact");
+            }
         }
 
         // If there is more than one message, change the description (which
