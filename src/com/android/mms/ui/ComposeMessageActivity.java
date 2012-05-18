@@ -223,9 +223,6 @@ public class ComposeMessageActivity extends Activity
     private static final int MENU_CALL_RECIPIENT        = 5;
     private static final int MENU_CONVERSATION_LIST     = 6;
     private static final int MENU_DEBUG_DUMP            = 7;
-    private CharSequence mSignature;        // Append text at the end of all outgoing messages
-
-+    private String mSignatureAutoAppend;    // Setting for Signature auto-appendprivate static final int MENU_APPEND_SIGNATURE      = 8;
 
     // Context menu ID
     private static final int MENU_VIEW_CONTACT          = 12;
@@ -278,8 +275,6 @@ public class ComposeMessageActivity extends Activity
 
     private boolean mExitOnSent;            // Should we finish() after sending a message?
                                             // TODO: mExitOnSent is obsolete -- remove
-    private CharSequence mSignature;        // Append text at the end of all outgoing messages
-    private String mSignatureAutoAppend;    // Setting for Signature auto-append
 
     private View mTopPanel;                 // View containing the recipient and subject editors
     private View mBottomPanel;              // View containing the text editor, send button, ec.
@@ -1854,8 +1849,7 @@ public class ComposeMessageActivity extends Activity
                 .getInt(MessagingPreferenceActivity.GESTURE_SENSITIVITY_VALUE, 3);
         boolean showGesture = prefs.getBoolean(MessagingPreferenceActivity.SHOW_GESTURE, false);
         boolean stripUnicode = prefs.getBoolean(MessagingPreferenceActivity.STRIP_UNICODE, false);
-        mSignature = prefs.getString(MessagingPreferenceActivity.SIGNATURE, "");
-        mSignatureAutoAppend = prefs.getString(MessagingPreferenceActivity.SIGNATURE_AUTO_APPEND, "append_off");
+
         mLibrary = TemplateGesturesLibrary.getStore(this);
 
         int layout = R.layout.compose_message_activity;
@@ -2318,10 +2312,6 @@ public class ComposeMessageActivity extends Activity
             mTextEditor.setFocusable(false);
             mTextEditor.setHint(R.string.open_keyboard_to_compose_message);
         }
-       // Auto-append signature on compose
-        if((mSignature != null) && mSignatureAutoAppend.equals("append_compose")) {
-            appendSignature();
-      }
     }
 
     @Override
@@ -2524,11 +2514,6 @@ public class ComposeMessageActivity extends Activity
         }
     }
 
-    private void appendSignature() {
-        mSignature = "\n" + mSignature;
-        mTextEditor.append(mSignature);
-    }
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu) ;
@@ -2588,10 +2573,6 @@ public class ComposeMessageActivity extends Activity
             menu.add(0, MENU_DISCARD, 0, R.string.discard).setIcon(android.R.drawable.ic_menu_delete);
         }
 
-	if(!mSignature.equals("")) {
-            menu.add(0, MENU_APPEND_SIGNATURE, 0, R.string.append_signature).setIcon(com.android.internal.R.drawable.ic_menu_edit);
-        } 
-
         buildAddAddressToContactMenuItem(menu);
 
         menu.add(0, MENU_PREFERENCES, 0, R.string.menu_preferences).setIcon(
@@ -2600,6 +2581,7 @@ public class ComposeMessageActivity extends Activity
         if (LogTag.DEBUG_DUMP) {
             menu.add(0, MENU_DEBUG_DUMP, 0, R.string.menu_debug_dump);
         }
+
         return true;
     }
 
@@ -2652,10 +2634,6 @@ public class ComposeMessageActivity extends Activity
                         goToConversationList();
                     }
                 });
-                break;
-	    case MENU_APPEND_SIGNATURE:
-                // Append signature manually
-                appendSignature();
                 break;
             case MENU_CALL_RECIPIENT:
                 dialRecipient();
@@ -3626,11 +3604,6 @@ public class ComposeMessageActivity extends Activity
                     Log.e(TAG, "Cannot find EmergencyCallbackModeExitDialog", e);
                 }
             }
-        }
-
-	// Auto-append signature on send
-        if((mSignature != null) && mSignatureAutoAppend.equals("append_send")) {
-            appendSignature();
         }
 
         if (!mSendingMessage) {
