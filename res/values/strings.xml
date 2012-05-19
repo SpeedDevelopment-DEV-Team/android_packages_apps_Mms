@@ -761,9 +761,6 @@
          the number of messages in the thread [CHAR LIMIT=5] -->
     <string name="message_count_format">\u00a0<xliff:g id="number" example="1">%1$s</xliff:g></string>
 
-    <!-- Menu item in conversation screen for append signature -->
-    <string name="append_signature">Append signature</string>
-
     <!-- For debugging: Dialog box title indicating there's a situation where data has unexpectedly
          changed -->
     <string name="error_state">Inconsistent state</string>
@@ -824,13 +821,6 @@
     <!-- Which timestamps -->
     <string name="pref_title_mms_use_sent_timestamp">Original timestamps</string>
     <string name="pref_summary_mms_use_sent_timestamp">Display sent date instead of received date in timestamps</string>
-
-    <!-- Signature -->
-    <string name="pref_title_mms_signature">Signature</string>
-    <string name="pref_summary_mms_signature">Append text to the end of all outgoing messages</string>
-    <string name="pref_title_mms_signature_auto_append">Signature auto-append</string>
-    <string name="pref_summary_mms_signature_auto_append">Setting for signature auto-append</string>
-    <string name="pref_dialogtitle_mms_signature_auto_append">Auto-append signature</string>
 
     <!-- Change Vibrate pattern/method for message notification -->
     <string name="pref_title_mms_notification_vibrate_settings">Vibrate settings</string>

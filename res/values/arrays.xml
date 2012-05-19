@@ -100,18 +100,6 @@
       <item>12</item>
     </string-array>
 
-    <string-array name="pref_mms_signature_auto_append_entries">
-        <item>Manual/Off</item>
-        <item>Append on Compose</item>
-        <item>Append on Send</item>
-    </string-array>
-
-    <string-array name="pref_mms_signature_auto_append_values" translatable="false">
-        <item>append_off</item>
-        <item>append_compose</item>
-        <item>append_send</item>
-    </string-array>
-
      <string-array name="pref_mms_notification_vibrate_pattern_entries">
        <item>Normal</item>
        <item>Medium Vibrate</item>
